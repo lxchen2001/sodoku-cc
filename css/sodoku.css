@@ -1,0 +1,96 @@
+.board .region{
+  width: calc(33.33%);
+  height: calc(33.33%);
+  margin: 0;
+  float: left;
+}
+
+.board .region .cell{
+  width: calc(33.33% - 1px);
+  height: calc(33.33% - 1px);
+  margin: 1px 0 0 1px;
+  float: left;
+  text-align: center;
+  display:table;
+  cursor: pointer;
+}
+
+.board .region .cell span{
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+.helper{
+  display:none;
+}
+
+@media screen and (min-width: 200px) and (min-height: 200px){
+  .board .region .cell span{
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 300px) and (min-height: 300px){
+  .board .region .cell span{
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 400px) and (min-height: 400px){
+  .board .region .cell span{
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 600px) and (min-height: 600px){
+  .board .region .cell span{
+    font-size: 40px;
+  }
+}
+
+@media screen and (min-width: 800px) and (min-height: 800px){
+  .board .region .cell span{
+    font-size: 50px;
+  }
+}
+
+@media screen and (min-width: 1000px) and (min-height: 1000px){
+  .board .region .cell span{
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
+  .board{
+    height: 100vw;
+    width: 100vw;
+  }
+}
+
+@media screen and (max-aspect-ratio: 3/4) {
+  .helper{
+    display: block;
+    width: 100vw;
+    height: calc(100% - 100vw);
+  }
+}
+
+@media screen and (min-aspect-ratio: 1/1) {
+  .board {
+    /* the 50px would be a variable in LESS, for the height for the navbar */
+    width: calc(100vh - 50px);
+    height: calc(100vh - 50px);
+    float: left;
+  }
+}
+
+@media screen and (min-aspect-ratio: 4/3){
+
+  .helper {
+    display: block;
+    width: calc(100vw - 100vh + 50px);
+    height: calc(100vh - 50px);
+    float: left;
+  }
+}

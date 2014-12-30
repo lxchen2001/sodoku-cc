@@ -1,0 +1,19 @@
+body{
+  background-color: rgb(26, 26, 26);
+}
+
+.navbar .title{
+  color: white;
+}
+
+.navbar .user-name {
+  color: white;
+}
+
+.board .cell{
+  background-color: rgb(41, 168, 193);
+}
+
+.board .cell span{
+  color: white;
+}

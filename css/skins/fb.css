@@ -1,0 +1,29 @@
+body{
+  background-color: rgb(233, 234, 237);
+  font-family: "Lucida Grande";
+}
+
+.navbar{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAABUCAMAAACfvxb8AAAAeFBMVEVOaaJMZ6FIZJ89W5lBXps8WplDYJxNaKFKZqBGYp5HY54/XJpCX5xFYZ07WZg+XJpLZqBAXZtJZZ9EYZ1NaKI8Wpg9WplMaKFNaaJJZJ9LZ6FEYJ1FYp1DX5xAXptJZaBAXZo+W5k+W5pKZaBGY55LZ6A8WZg/XZpJqQD4AAAAVklEQVR4Xk3CBQoDABADwU3d3d37/x8WAqEHI/jboZV1Y2sqDuiNZtaLJ7qihe1RoxjEC/XjhMaxtCPqxBmNolVc0Nxu6IuGMbUHuqNmsbF2rO2DJhg/RwEE6AR0V3kAAAAASUVORK5CYII=);
+  background-repeat: repeat-x;
+  background-size: 1px 42px;
+  background-position: 0 0;
+  background-color: #3a5795;
+}
+
+.navbar .title{
+  background-image: url('fb-title.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 300px 50px;
+}
+
+.board .cell{
+  background-color: white;
+  color: rgb(60, 90, 150);
+}
+
+.board .cell:hover{
+  background-color: rgb(60, 90, 150);
+  color: white;
+}

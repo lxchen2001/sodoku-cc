@@ -1,0 +1,52 @@
+body{
+  margin: 0px;
+}
+.navbar{
+  height: 50px;
+}
+
+.navbar .title{
+  width: 300px;
+  height: 50px;
+  float: left;
+}
+
+.navbar .items{
+  float: right;
+  height: 50px;
+  line-height:50px;
+  margin-right: 10px;
+  color:gold;
+}
+
+@media screen and (max-width: 600px){
+  .navbar .items .name{
+    display: none;
+  }
+}
+.navbar .user-name{
+  float: right;
+  margin-right: 10px;
+  font-size: 20px;
+  height:50px;
+  line-height: 50px;
+  color:white;
+}
+
+.navbar .user-avatar{
+  float: right;
+  width: 46px;
+  height: 46px;
+  margin-right: 10px;
+  border: solid 2px white;
+  border-radius: 50%;
+  vertical-align: center;
+}
+
+.container{
+  height: calc(100% - 50px);
+}
+
+.clearfix{
+  clear: both;
+}
