@@ -6,9 +6,13 @@ body{
   background-color: rgb(252, 92, 99);
 }
 
-.navbar .user-name {
-  color: white;
+.navbar .title{
+  background-image: url('airbnb-title.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 300px 50px;
 }
+
 .board .cell{
   background-color: rgb(252, 92, 99);
 }

@@ -12,8 +12,25 @@ body{
 
 .board .cell{
   background-color: rgb(41, 168, 193);
+  color: white;
 }
 
-.board .cell span{
-  color: white;
+.board .cell.invalid{
+  background-color: #92262D;
+}
+.board .cell.predefined{
+
+}
+
+.board .cell.hint{
+  color: gold;
+}
+
+.board .cell.userInput{
+  color: blue;
+}
+
+.board .cell:hover{
+  color: rgb(41, 168, 193);
+  background-color: white;
 }
