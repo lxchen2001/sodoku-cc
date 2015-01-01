@@ -28,11 +28,11 @@ body{
   color: white;
 }
 
-.numberPicker svg circle, .numberPicker svg path{
+.number-picker svg circle, .number-picker svg path{
   fill: rgb(60, 90, 150);
   stroke: white;
 }
 
-.numberPicker svg circle:hover, .numberPicker svg path:hover{
+.number-picker svg circle:hover, .number-picker svg path:hover{
   fill: red;
 }

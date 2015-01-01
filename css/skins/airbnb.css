@@ -21,15 +21,15 @@ body{
   color: white;
 }
 
-.numberPicker svg circle, .numberPicker svg path{
+.number-picker svg circle, .number-picker svg path{
   fill: white;
   stroke: rgb(252, 92, 99);
 }
 
-.numberPicker svg circle:hover, .numberPicker svg path:hover{
+.number-picker svg circle:hover, .number-picker svg path:hover{
   fill: gold;
 }
 
-.numberPicker svg text{
+.number-picker svg text{
   fill: rgb(252, 92, 99) !important;
 }
