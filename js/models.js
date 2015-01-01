@@ -1,17 +1,17 @@
 (function(){
   "use strict";
 
-  window.Sodoku = window.Sodoku || {};
-  window.Sodoku.Models = window.Sodoku.Models || {};
-  window.Sodoku.Models.SourceType = window.Sodoku.Models.SourceType || {
+  window.Sudoku = window.Sudoku || {};
+  window.Sudoku.Models = window.Sudoku.Models || {};
+  window.Sudoku.Models.SourceType = window.Sudoku.Models.SourceType || {
     predefined: "P",
     userInput: "U",
     hint: "H"
   };
 
-  var SourceType = window.Sodoku.Models.SourceType;
+  var SourceType = window.Sudoku.Models.SourceType;
 
-  window.Sodoku.Models.Board = window.Sodoku.Models.Board || function Board(stringRep){
+  window.Sudoku.Models.Board = window.Sudoku.Models.Board || function Board(stringRep){
     var s = stringRep;
     if(s == null || typeof s !== "string" || s.length != 81){
       return null;

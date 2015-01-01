@@ -1,7 +1,7 @@
 (function(){
-  window.Sodoku = window.Sodoku || {};
-  window.Sodoku.Controllers = window.Sodoku.Controllers || {};
-  window.Sodoku.Controllers.GameController = window.Sodoku.Controllers.GameController || function GameController(renderer, userService, gameService){
+  window.Sudoku = window.Sudoku || {};
+  window.Sudoku.Controllers = window.Sudoku.Controllers || {};
+  window.Sudoku.Controllers.GameController = window.Sudoku.Controllers.GameController || function GameController(renderer, userService, gameService){
 
     return {
       renderer: renderer,
@@ -15,16 +15,16 @@
 
       newGame: function GameController_newGame(id){
         var stringRep = this.gameService.getNewGame(id);
-        var board = new Sodoku.Models.Board(stringRep);
-        var game = new Sodoku.Models.Game(id, board);
+        var board = new Sudoku.Models.Board(stringRep);
+        var game = new Sudoku.Models.Game(id, board);
         this.game = game;
         this.renderer.renderGame(game);
       },
 
       newRandomGame: function GameController_newRandomGame(){
         var stringRepWithId = gameService.getNewRandomGame();
-        var board = new Sodoku.Models.Board(stringRepWithId.stringRep);
-        var game = new Sodoku.Models.Game(stringRepWithId.id, board);
+        var board = new Sudoku.Models.Board(stringRepWithId.stringRep);
+        var game = new Sudoku.Models.Game(stringRepWithId.id, board);
         this.game = game;
         this.renderer.renderGame(game);
       },

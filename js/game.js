@@ -1,18 +1,18 @@
 (function(){
   "use strict";
 
-  window.Sodoku = window.Sodoku || {};
-  window.Sodoku.Models = window.Sodoku.Models || {};
-  window.Sodoku.Models.GameState = window.Sodoku.Models.GameState || {
+  window.Sudoku = window.Sudoku || {};
+  window.Sudoku.Models = window.Sudoku.Models || {};
+  window.Sudoku.Models.GameState = window.Sudoku.Models.GameState || {
     readyToStart: "R",
     started: "S",
     completed: "C",
     abandoned: "A",
   };
 
-  var GameState = window.Sodoku.Models.GameState;
+  var GameState = window.Sudoku.Models.GameState;
 
-  window.Sodoku.Models.Game = window.Sodoku.Models.Game || function Game(id, board){
+  window.Sudoku.Models.Game = window.Sudoku.Models.Game || function Game(id, board){
     return {
       id: id,
       board: board,

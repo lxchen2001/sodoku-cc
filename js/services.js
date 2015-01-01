@@ -1,9 +1,9 @@
 (function(){
   "use strict";
 
-  window.Soduku = window.Soduku || {};
-  window.Sodoku.Services = window.Sodoku.Services || {};
-  window.Sodoku.Services.UserService = window.Sodoku.Services.UserService || function UserService(){
+  window.Sudoku = window.Sudoku || {};
+  window.Sudoku.Services = window.Sudoku.Services || {};
+  window.Sudoku.Services.UserService = window.Sudoku.Services.UserService || function UserService(){
     return {
       getUserInfo: function UserService_getUserInfo(){
         return {
@@ -14,7 +14,7 @@
     };
   };
 
-  window.Sodoku.Services.GameService = window.Sodoku.Services.GameService || function GameService(){
+  window.Sudoku.Services.GameService = window.Sudoku.Services.GameService || function GameService(){
     var games = [
       "98765432124617398535192874612853769463489215779546183251928647347231956886374521.",
       "..............3.85..1.2.......5.7.....4...1...9.......5......73..2.1........4...9",
@@ -118,7 +118,7 @@
         var emptyCell = emptyCells[rd];
         var x = emptyCell.x;
         var y = emptyCell.y;
-        board.updateCell(x, y, parseInt(solve[x * 9 + y]), Sodoku.Models.SourceType.hint);
+        board.updateCell(x, y, parseInt(solve[x * 9 + y]), Sudoku.Models.SourceType.hint);
       }
     };
   };

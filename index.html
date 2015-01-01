@@ -1,8 +1,9 @@
 <html>
 <head>
-  <title>Sodoku Game</title>
+  <title>Sudoku Game</title>
+  <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="css/site.css" />
-  <link rel="stylesheet" href="css/sodoku.css" />
+  <link rel="stylesheet" href="css/Sudoku.css" />
   <link id="skin" rel="stylesheet" href="css/skins/uber.css" />
 </head>
 <body>
@@ -62,6 +63,7 @@
     <h2>Congratulations</h2>
     <p>You have completed game <span class="gameId"></span> in <span class="time"></span>!</p>
     <button onclick="controller && controller.hideCompleteMessage()">I knew it!</button>
+    <button onclick="controller && controller.hideCompleteMessage() && controller.showGamePicker()">Shoot me more!</button>
   </div>
   <div class="abandonMessage">
     <h2>Too bad</h2>
@@ -79,10 +81,10 @@
   <script src="js/renderer.js"></script>
   <script src="js/controllers.js"></script>
   <script>
-    var controller = new Sodoku.Controllers.GameController(
-      new Sodoku.Renderers.jQueryRenderer(".board", ".numberPicker", ".gamePicker", ".completeMessage", ".abandonMessage", ".time"),
-      new Sodoku.Services.UserService(),
-      new Sodoku.Services.GameService());
+    var controller = new Sudoku.Controllers.GameController(
+      new Sudoku.Renderers.jQueryRenderer(".board", ".numberPicker", ".gamePicker", ".completeMessage", ".abandonMessage", ".time"),
+      new Sudoku.Services.UserService(),
+      new Sudoku.Services.GameService());
     controller.init();
     controller.newRandomGame();
   </script>
