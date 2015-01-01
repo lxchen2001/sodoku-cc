@@ -20,7 +20,12 @@
         <button onclick="controller && controller.showGamePicker()">New Game</button>
         <button onclick="controller && controller.newRandomGame()">Random!</button>
         <button onclick="controller && controller.abandonGame()">Abandon</button>
-        <button onclick="controller && controller.hint()">Hint</button>
+        <button onclick="controller && controller.hint()">Hint</button><br />
+        <select onchange="applySkin(this.value)">
+          <option value="uber">Skin: Ub**</option>
+          <option value="airbnb">Skin: Air***</option>
+          <option value="fb">Skin: Face****</option>
+        </select>
       </div>
       <div class="time"></div>
       <div class="clearfix"></div>
@@ -82,5 +87,11 @@
       new Sudoku.Services.GameService());
     controller.init();
     controller.newRandomGame();
+
+    function applySkin(name){
+      var skin = document.querySelector("#skin");
+      var url = "css/skins/" + name + ".css";
+      skin.href= url;
+    }
   </script>
 </body>
