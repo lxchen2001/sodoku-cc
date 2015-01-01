@@ -3,6 +3,19 @@
 
   window.Sodoku = window.Sodoku || {};
   window.Sodoku.Renderers = window.Sodoku.Renderers || {};
+  window.Sodoku.Renderers.showDialog = window.Sodoku.Renderers.showDialog || function showDialog($elem, options){
+    options = options || {};
+    var $dialog = $("#dialog");
+    $dialog.css("top", document.body.scrollTop + "px")
+      .css("left", document.body.scrollLeft + "px")
+      .css("width", window.innerWidth + "px")
+      .css("height", window.innerHeight + "px");
+    $dialog.show();
+  };
+
+  window.Sodoku.Renderers.hideDialog = window.Sodoku.Renderers.hideDialog || function hideDialog($elem){
+    $elem[0].hide();
+  };
 
   var SourceType = window.Sodoku.Models.SourceType;
   var GameState = window.Sodoku.Models.GameState;
@@ -67,7 +80,7 @@
       $circle.attr("r", r*2/5);
       $circle.off();
       $circle.on("click", function(){
-        $elem.hide(300);
+        $elem.hide();
       });
       var $text = $($texts[0]);
       $text.text(oldNumber);
@@ -84,7 +97,7 @@
           e = jQuery.event.fix(e);
           var index = parseInt(e.target.attributes["name"].value);
           onNumberSelected(Math.floor(cellIndex / 9), cellIndex % 9, index);
-          $elem.hide(300);
+          $elem.hide();
         });
         var $text = $($texts[i+1]);
         var centerAngle = Math.PI * (i * 2 + 1) / 9;
@@ -92,21 +105,36 @@
       }
 
       $elem.css("left", x+"px").css("top", y+"px").css("width", d+"px").css("height", d+"px");
-      $elem.show(300);
+      $elem.show();
       var offset = getNumberFontSize() / 2 + 2;
       $svg.find("g.text").attr("transform", "translate(0," + offset + ")");
     }
 
-    function renderCompleteMessage(game){
+    function showDialog($elem, options){
+      hideDialog();
 
+      var $dialog = $("#dialog");
+      $elem.detach();
+      $dialog.append($elem);
+      $elem.show();
+      $dialog.show();
+    }
+
+    function hideDialog(){
+      var $dialog = $("#dialog");
+      var $children = $dialog.children();
+      $children.detach();
+      $(document.body).append($children);
+      $children.hide();
+      $dialog.hide();
+    }
+
+    function renderCompleteMessage(game){
+      showDialog($completeMessageElement);
     }
 
     function renderAbandonMessage(game){
-
-    }
-
-    function renderGamePicker(onGamePicked){
-
+      showDialog($abandonMessageElement);
     }
 
     return {
@@ -151,9 +179,9 @@
           if(that.timeRendering){
             var diff = new Date() - that.startTime;
             diff /= 1000;
-            var sec = Math.floor(diff % 3600);
+            var sec = Math.floor(diff % 60);
             var hour = Math.floor(diff / 3600);
-            var min = Math.floor(diff / 60 - hour);
+            var min = Math.floor(diff / 60 - hour * 60);
             $elem.text(hour + ":" + (min < 10 ? '0' : '') + min + ":" + (sec < 10 ? '0' : '') + sec);
             setTimeout(render, 200);
           }
@@ -164,6 +192,43 @@
 
       stopRenderingTime: function jQueryRenderer_stopRenderingTime(){
         this.timeRendering = false;
+      },
+
+      renderGamePicker: function jQueryRenderer_renderGamePicker(gameService, onGamePicked){
+        var that = this;
+        var $elem = this.$gamePickerElement;
+        if(!$elem[0].init){
+          var gameIds = gameService.getGameIds();
+          for(var i = 0; i < gameIds.length; i++){
+            var id = gameIds[i];
+            $elem.append('<button name="' + id + '">' + gameIds[i] + '</button>');
+          }
+          $elem[0].init = true;
+        }
+
+        var $buttons = $elem.find("button");
+        $buttons.off();
+        $buttons.on("click", function(e){
+          e = e || window.event;
+          e = jQuery.event.fix(e);
+          var id = parseInt(e.target.attributes["name"].value);
+          onGamePicked(id);
+          that.hideGamePicker();
+        });
+
+        showDialog($elem);
+      },
+
+      hideGamePicker: function jQueryRenderer_hideGamePicker(){
+        hideDialog();
+      },
+
+      hideCompleteMessage: function jQueryRender_hideCompleteMessage(){
+        hideDialog();
+      },
+
+      hideAbandonMessage: function jQueryRender_hideAbandonMessage(){
+        hideDialog();
       },
 
       renderGame: function jQueryRenderer_renderGame(game){

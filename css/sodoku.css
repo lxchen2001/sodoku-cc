@@ -32,7 +32,7 @@
 .numberPicker{
   display: none;
   position: absolute;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .numberPicker svg circle{
@@ -51,8 +51,26 @@
   pointer-events: none;
 }
 
+#dialog{
+  padding: 20%;
+}
+
 .gamePicker{
-  
+  width: 60%;
+  height: 60%;
+  background-color: white;
+}
+
+.completeMessage{
+  width: 60%;
+  height: 60%;
+  background-color: white;
+}
+
+.abandonMessage{
+  width: 60%;
+  height: 60%;
+  background-color: white;
 }
 
 @media screen and (min-width: 200px) and (min-height: 200px){

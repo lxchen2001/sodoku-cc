@@ -19,13 +19,13 @@
   <div class="container">
     <div class="board"></div>
     <div class="helper">
-      <div class="time"></div>
       <div class="buttons">
-        <button onclick="">New Game</button>
+        <button onclick="controller && controller.showGamePicker()">New Game</button>
         <button onclick="controller && controller.newRandomGame()">Random!</button>
         <button onclick="controller && controller.abandonGame()">Abandon</button>
         <button onclick="controller && controller.hint()">Hint</button>
       </div>
+      <div class="time"></div>
       <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
@@ -58,9 +58,20 @@
       </g>
     </svg>
   </div>
-  <div class="completeMessage"></div>
-  <div class="abandonMessage"></div>
-  <div class="gamePicker"></div>
+  <div class="completeMessage">
+    <h2>Congratulations</h2>
+    <p>You have completed game <span class="gameId"></span> in <span class="time"></span>!</p>
+    <button onclick="controller && controller.hideCompleteMessage()">I knew it!</button>
+  </div>
+  <div class="abandonMessage">
+    <h2>Too bad</h2>
+    <p>You decided to abandon game <span class="gameId"></span> after <span class="time"></span>...</p>
+    <button onclick="controller && controller.hideAbandonMessage() && controller.showGamePicker()">Try different one</button>
+  </div>
+  <div class="gamePicker">
+    <h2>Choose a game to start</h2>
+  </div>
+  <div id="dialog"></div>
   <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
   <script src="js/models.js"></script>
   <script src="js/game.js"></script>

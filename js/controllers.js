@@ -46,6 +46,30 @@
           this.renderer.renderGame(this.game, true);
         }
       },
+
+      showGamePicker: function GameController_showGamePicker(){
+        var that = this;
+        this.renderer.renderGamePicker(this.gameService, function(id){
+          if(id != null && typeof id === "number" && id >= 0){
+            that.newGame(id);
+          }
+        });
+      },
+
+      hideGamePicker: function GameController_hideGamePicker(){
+        this.renderer.hideGamePicker();
+        return true;
+      },
+
+      hideCompleteMessage: function GameController_hideCompleteMessage(){
+        this.renderer.hideCompleteMessage();
+        return true;
+      },
+
+      hideAbandonMessage: function GameController_hideAbandonMessage(){
+        this.renderer.hideAbandonMessage();
+        return true;
+      },
     }
   };
 })();

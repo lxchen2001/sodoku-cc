@@ -63,9 +63,15 @@
       "869571324327849516145623987952368741681497235473215869514982673798136452236754198",
     ];
 
+    var ids = [];
+    for(var i = 0; i < 20; i++){
+      ids.push(i);
+    }
+
     return {
       games: games,
       solves: solves,
+      gameIds: ids,
 
       getNewGame: function GameService_getNewGame(id){
         if(id == null || typeof id !== "number" || id < 0 || id > 19){
@@ -73,6 +79,10 @@
         }
 
         return this.games[id];
+      },
+
+      getGameIds: function GameServices_getGameIds(){
+        return this.gameIds;
       },
 
       getNewRandomGame: function GameService_getNewRandomGame(){
@@ -112,4 +122,4 @@
       }
     };
   };
-})()
+})();
