@@ -1,16 +1,16 @@
 (function(){
   window.Sudoku = window.Sudoku || {};
   window.Sudoku.Controllers = window.Sudoku.Controllers || {};
-  window.Sudoku.Controllers.GameController = window.Sudoku.Controllers.GameController || function GameController(renderer, userService, gameService){
+  window.Sudoku.Controllers.GameController = window.Sudoku.Controllers.GameController || function GameController(view, userService, gameService){
 
     return {
-      renderer: renderer,
+      view: view,
       userService: userService,
       gameService: gameService,
       game: null,
 
       init: function GameController_init(){
-        this.renderer.initIfNeeded();
+        this.view.initIfNeeded();
       },
 
       newGame: function GameController_newGame(id){
@@ -18,7 +18,7 @@
         var board = new Sudoku.Models.Board(stringRep);
         var game = new Sudoku.Models.Game(id, board);
         this.game = game;
-        this.renderer.renderGame(game);
+        this.view.renderGame(game);
       },
 
       newRandomGame: function GameController_newRandomGame(){
@@ -26,30 +26,30 @@
         var board = new Sudoku.Models.Board(stringRepWithId.stringRep);
         var game = new Sudoku.Models.Game(stringRepWithId.id, board);
         this.game = game;
-        this.renderer.renderGame(game);
+        this.view.renderGame(game);
       },
 
       setNumber: function GameController_setNumber(x, y, num){
         if(this.game && this.game.setNumber(x, y, num)){
-          this.renderer.renderGame(this.game, true);
+          this.view.renderGame(this.game, true);
         }
       },
 
       hint: function GameController_hint(){
         if(this.game && this.game.hint(this.gameService)){
-          this.renderer.renderGame(this.game, true);
+          this.view.renderGame(this.game, true);
         }
       },
 
       abandonGame: function GameController_abandonGame(){
         if(this.game && this.game.abandon()){
-          this.renderer.renderGame(this.game, true);
+          this.view.renderGame(this.game, true);
         }
       },
 
       showGamePicker: function GameController_showGamePicker(){
         var that = this;
-        this.renderer.renderGamePicker(this.gameService, function(id){
+        this.view.renderGamePicker(this.gameService, function(id){
           if(id != null && typeof id === "number" && id >= 0){
             that.newGame(id);
           }
@@ -57,17 +57,17 @@
       },
 
       hideGamePicker: function GameController_hideGamePicker(){
-        this.renderer.hideGamePicker();
+        this.view.hideGamePicker();
         return true;
       },
 
       hideCompleteMessage: function GameController_hideCompleteMessage(){
-        this.renderer.hideCompleteMessage();
+        this.view.hideCompleteMessage();
         return true;
       },
 
       hideAbandonMessage: function GameController_hideAbandonMessage(){
-        this.renderer.hideAbandonMessage();
+        this.view.hideAbandonMessage();
         return true;
       },
     }

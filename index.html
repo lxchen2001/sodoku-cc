@@ -3,7 +3,7 @@
   <title>Sudoku Game</title>
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="css/site.css" />
-  <link rel="stylesheet" href="css/Sudoku.css" />
+  <link rel="stylesheet" href="css/sudoku.css" />
   <link id="skin" rel="stylesheet" href="css/skins/uber.css" />
 </head>
 <body>
@@ -11,10 +11,6 @@
     <div class="title"></div>
     <img class="user-avatar" src="images/hooray.png" />
     <span class="user-name">Hooray Hu</span>
-    <div class="items" onclick="controller && controller.hint()">
-      <span class="name">Hint</span>
-      <span class="value">20</span>
-    </div>
     <div class="clearfix"></div>
   </div>
   <div class="container">
@@ -31,7 +27,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="numberPicker">
+  <div class="number-picker">
     <svg>
       <g class="all">
         <path></path>
@@ -59,30 +55,29 @@
       </g>
     </svg>
   </div>
-  <div class="completeMessage">
+  <div class="complete-message">
     <h2>Congratulations</h2>
     <p>You have completed game <span class="gameId"></span> in <span class="time"></span>!</p>
     <button onclick="controller && controller.hideCompleteMessage()">I knew it!</button>
     <button onclick="controller && controller.hideCompleteMessage() && controller.showGamePicker()">Shoot me more!</button>
   </div>
-  <div class="abandonMessage">
+  <div class="abandon-message">
     <h2>Too bad</h2>
     <p>You decided to abandon game <span class="gameId"></span> after <span class="time"></span>...</p>
     <button onclick="controller && controller.hideAbandonMessage() && controller.showGamePicker()">Try different one</button>
   </div>
-  <div class="gamePicker">
+  <div class="game-picker">
     <h2>Choose a game to start</h2>
   </div>
   <div id="dialog"></div>
   <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
   <script src="js/models.js"></script>
-  <script src="js/game.js"></script>
   <script src="js/services.js"></script>
-  <script src="js/renderer.js"></script>
+  <script src="js/view.js"></script>
   <script src="js/controllers.js"></script>
   <script>
     var controller = new Sudoku.Controllers.GameController(
-      new Sudoku.Renderers.jQueryRenderer(".board", ".numberPicker", ".gamePicker", ".completeMessage", ".abandonMessage", ".time"),
+      new Sudoku.View.jQueryView(".board", ".number-picker", ".game-picker", ".complete-message", ".abandon-message", ".time"),
       new Sudoku.Services.UserService(),
       new Sudoku.Services.GameService());
     controller.init();

@@ -1,9 +1,9 @@
 (function(){
   "use strict";
 
-  window.Sodoku = window.Sodoku || {};
-  window.Sodoku.Renderers = window.Sodoku.Renderers || {};
-  window.Sodoku.Renderers.showDialog = window.Sodoku.Renderers.showDialog || function showDialog($elem, options){
+  window.Sudoku = window.Sudoku || {};
+  window.Sudoku.View = window.Sudoku.View || {};
+  window.Sudoku.View.showDialog = window.Sudoku.View.showDialog || function showDialog($elem, options){
     options = options || {};
     var $dialog = $("#dialog");
     $dialog.css("top", document.body.scrollTop + "px")
@@ -13,14 +13,14 @@
     $dialog.show();
   };
 
-  window.Sodoku.Renderers.hideDialog = window.Sodoku.Renderers.hideDialog || function hideDialog($elem){
+  window.Sudoku.View.hideDialog = window.Sudoku.View.hideDialog || function hideDialog($elem){
     $elem[0].hide();
   };
 
-  var SourceType = window.Sodoku.Models.SourceType;
-  var GameState = window.Sodoku.Models.GameState;
+  var SourceType = window.Sudoku.Models.SourceType;
+  var GameState = window.Sudoku.Models.GameState;
 
-  window.Sodoku.Renderers.jQueryRenderer = window.Sodoku.Renderers.jQueryRenderer || function jQueryRenderer(boardSelector, numberPickerSelector, gamePickerSelector, completeMessageSelector, abandonMessageSelector, timeSelector){
+  window.Sudoku.View.jQueryView = window.Sudoku.View.jQueryView || function jQueryView(boardSelector, numberPickerSelector, gamePickerSelector, completeMessageSelector, abandonMessageSelector, timeSelector){
     var $boardElement = $(boardSelector);
     var $numberPickerElement = $(numberPickerSelector);
     var $gamePickerElement = $(gamePickerSelector);
@@ -147,7 +147,7 @@
       timeRendering: false,
       startTime: null,
 
-      initIfNeeded: function jQueryRenderer_initIfNeeded(){
+      initIfNeeded: function jQueryView_initIfNeeded(){
         var $elem = this.$boardElement;
         if($elem[0].initialized){
           return;
@@ -170,7 +170,7 @@
         $elem[0].initialized = true;
       },
 
-      renderTime: function jQueryRenderer_renderTime(game){
+      renderTime: function jQueryView_renderTime(game){
         var $elem = this.$timeElement;
         var that = this;
         this.timeRendering = true;
@@ -190,11 +190,11 @@
         render();
       },
 
-      stopRenderingTime: function jQueryRenderer_stopRenderingTime(){
+      stopRenderingTime: function jQueryView_stopRenderingTime(){
         this.timeRendering = false;
       },
 
-      renderGamePicker: function jQueryRenderer_renderGamePicker(gameService, onGamePicked){
+      renderGamePicker: function jQueryView_renderGamePicker(gameService, onGamePicked){
         var that = this;
         var $elem = this.$gamePickerElement;
         if(!$elem[0].init){
@@ -219,19 +219,19 @@
         showDialog($elem);
       },
 
-      hideGamePicker: function jQueryRenderer_hideGamePicker(){
+      hideGamePicker: function jQueryView_hideGamePicker(){
         hideDialog();
       },
 
-      hideCompleteMessage: function jQueryRender_hideCompleteMessage(){
+      hideCompleteMessage: function jQueryView_hideCompleteMessage(){
         hideDialog();
       },
 
-      hideAbandonMessage: function jQueryRender_hideAbandonMessage(){
+      hideAbandonMessage: function jQueryView_hideAbandonMessage(){
         hideDialog();
       },
 
-      renderGame: function jQueryRenderer_renderGame(game){
+      renderGame: function jQueryView_renderGame(game){
         var $elem = this.$boardElement;
         this.initIfNeeded();
 

@@ -3,13 +3,13 @@ This is a code challenge project, to build a Sudoku game.
 
 ##Features
 <ol>
-  <li>User can start playing the game right away.
-  <li>User can choose from multiple predefined games.
-  <li>User gets realtime validation after each actions.
-  <li>User can use in-game item: Hint to get a hint.
-  <li>User can switch among three skins, based on theme colors of three popular web sites.
-  <li>User can see equally good UI no matter whether his device is in portrait or landscape mode.
-  <li>User can picking number from a roulette wheel, with clicking center meaning cancel the picking.
+  <li>User can start playing the game right away
+  <li>User can choose from multiple predefined games
+  <li>User gets realtime validation after each actions
+  <li>User can get a hint
+  <li>User can switch among three skins, based on theme colors of three popular web sites
+  <li>User can see equally good UI no matter whether his device is in portrait or landscape mode
+  <li>User can picking number from a roulette wheel, with clicking center meaning cancel the picking
 </ol>
 
 ##Project Structure
@@ -35,19 +35,23 @@ This is a code challenge project, to build a Sudoku game.
 * tests/controllertests.js: test cases for controllers, with mockup for models and view
 
 ##Dependencies
-* [jQuery] - duh
+* [jQuery] - to operate the DOM. This is replaceable, since all of the usage is encapsulated in jQueryView.
 
 ##Further ideas
-* VS game: two people solving the same board, view side by side, one could see everything for his own cell, but could only see which cell is solved on the opponent's board.
-* Provide interface for record and replay.
-* Enable multiple (possible) numbers in a cell.
-* With 2 and 3, provide interface for solver: show how the possible numbers get reduced.
-* More Accessible - keyboard access
-  * Up, Down, Left, Right to focus
-  * Type to input number
-* Friends and Leaderboards
-* Purchase of the in-game item
-* Better animation on the roulette wheel to choose numbers, implementing an new effect for jQuery.show()
+* Major Features:
+  * VS game: two people solving the same board, view side by side, one could see everything for his own cell, but could only see which cell is solved on the opponent's board
+  * Provide interface for record and replay
+  * Enable multiple (possible) numbers in one cell
+  * Show progress of solving
+  * Friends and Leaderboards
+  * Making the hint as an purchasable item
+* Minor Improvements:
+  * More Accessible - keyboard access
+    * Up, Down, Left, Right to focus
+    * Type to input number
+  * "Rotating scan and show" animation on the roulette wheel to choose numbers
 
 ##References
 * The predefined questions come from "Hardest 20": http://attractivechaos.github.io/plb/kudoku.html
+
+[jQuery]:http://jquery.com
