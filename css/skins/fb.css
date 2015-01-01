@@ -27,3 +27,12 @@ body{
   background-color: rgb(60, 90, 150);
   color: white;
 }
+
+.numberPicker svg circle, .numberPicker svg path{
+  fill: rgb(60, 90, 150);
+  stroke: white;
+}
+
+.numberPicker svg circle:hover, .numberPicker svg path:hover{
+  fill: red;
+}

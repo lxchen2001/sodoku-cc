@@ -20,3 +20,16 @@ body{
 .board .cell span{
   color: white;
 }
+
+.numberPicker svg circle, .numberPicker svg path{
+  fill: white;
+  stroke: rgb(252, 92, 99);
+}
+
+.numberPicker svg circle:hover, .numberPicker svg path:hover{
+  fill: gold;
+}
+
+.numberPicker svg text{
+  fill: rgb(252, 92, 99) !important;
+}

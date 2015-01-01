@@ -2,83 +2,84 @@
   "use strict";
 
   window.Sodoku = window.Sodoku || {};
-  window.Sodoku.GameState = window.Sodoku.GameState || {
-    notInitialized: "N",
-    initialized: "I",
+  window.Sodoku.Models = window.Sodoku.Models || {};
+  window.Sodoku.Models.GameState = window.Sodoku.Models.GameState || {
     readyToStart: "R",
-    playStarted: "P",
+    started: "S",
     completed: "C",
     abandoned: "A",
   };
 
-  var GameState = window.Sodoku.GameState;
+  var GameState = window.Sodoku.Models.GameState;
 
-  window.Sodoku.Game = window.Sodoku.Game || function Game(element, renderer, services){
-    var userService = new services.UserService();
-    var gameService = new services.GameService();
-
-    var gameId = null;
-    var state = GameState.notInitialized;
-    var board = null;
-    var startTime = null;
-    var completeTime = null;
-
+  window.Sodoku.Models.Game = window.Sodoku.Models.Game || function Game(id, board){
     return {
-      renderer: renderer,
-      userService: userService,
-      gameService: gameService,
-      gameId: gameId,
-      element: element,
-      state: state,
+      id: id,
       board: board,
-      startTime: startTime,
-      completeTime: completeTime,
+      state: GameState.readyToStart,
+      startTime: null,
+      endTime: null,
 
-      init: function Game_init(){
-        this.renderer.initIfNeeded(this.element);
-        this.state = GameState.initialized;
+      // returns whether starting succeeded
+      start: function Game_start(){
+        switch(this.state){
+          case GameState.completed:
+          case GameState.abandoned:
+            return false;
+          case GameState.readyToStart:
+            this.startTime = new Date();
+            this.state = GameState.started;
+            break;
+        }
+
+        return true;
       },
 
-      newGame: function Game_newGame(id){
-        this.board = this.gameService.getNewGame(id);
-        this.gameId = id;
-        this.state = GameState.readyToStart;
-        this.renderer.render(this.element, this.board);
-      },
-
-      newRandomGame: function Game_newRandomGame(){
-        var randomGame = gameService.getNewRandomGame();
-        this.gameId = randomGame.id;
-        this.board = randomGame.game;
-        this.state = GameState.readyToStart;
-        this.renderer.render(this.element, this.board);
-      },
-
-      setNumber: function Game_setNumber(x, y, num){
-        this.board.updateCell(x, y, num);
+      checkComplete: function Game_checkComplete(){
         if(this.board.isComplete()){
           this.state = GameState.completed;
-          this.competeTime = new Date() - startTime;
-        } else if(state !== GameState.playStarted){
-          this.state = GameState.playStarted;
-          this.startTime = new Date();
+          this.endTime = new Date();
         }
-        this.renderer.render(this.element, this.board);
       },
 
-      hint: function Game_hint(){
-        if(this.state !== GameState.playStarted){
+      // returns whether abandoning succeeded
+      abandon: function Game_abandon(){
+        switch(this.state){
+          case GameState.readyToStart:
+          case GameState.completed:
+          case GameState.abandoned:
+            return false;
+          case GameState.started:
+            this.endTime = new Date();
+            this.state = GameState.abandoned;
+            break;
+        }
+
+        return true;
+      },
+
+      // returns whether re-render is needed
+      setNumber: function Game_setNumber(x, y, num){
+        if(!this.start()){
+          return false;
+        }
+
+        this.board.updateCell(x, y, num);
+        this.checkComplete();
+        return true;
+      },
+
+      // returns whether re-render is needed
+      hint: function Game_hint(service){
+        if(!this.start()){
           return;
         }
 
-        this.board.hint();
-        if(this.board.isComplete()){
-          this.state = GameState.completed;
-          this.competeTime = new Date() - startTime;
-        }
+        service.hint(this);
+        this.checkComplete();
+        return true;
       }
     };
   };
-
 
 })();

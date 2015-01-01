@@ -4,6 +4,14 @@
   window.Soduku = window.Soduku || {};
   window.Sodoku.Services = window.Sodoku.Services || {};
   window.Sodoku.Services.UserService = window.Sodoku.Services.UserService || function UserService(){
+    return {
+      getUserInfo: function UserService_getUserInfo(){
+        return {
+          name: "Hooray Hu",
+          avatar: "hooray.png",
+        }
+      },
+    };
   };
 
   window.Sodoku.Services.GameService = window.Sodoku.Services.GameService || function GameService(){
@@ -64,24 +72,31 @@
           return null;
         }
 
-        return new Sodoku.Models.Board(this.games[id]);
+        return this.games[id];
       },
 
       getNewRandomGame: function GameService_getNewRandomGame(){
         var rd = Math.floor(Math.random()*20);
         return {
           id: rd,
-          board: new Sodoku.Models.Board(this.games[id])
+          stringRep: this.games[rd]
         }
       },
 
       // this is the special case since all of them has only one solution each
       // if not, we should introduce a solver to solve the current board
-      hint: function GameService_hint(id, board){
+      hint: function GameService_hint(game){
+        if(game == null){
+          // log error and save to server
+          return;
+        }
+
+        var id = game.id;
         if(id == null || typeof id !== "number" || id < 0 || id > 19){
           // log error and save to server
           return;
         }
+        var board = game.board;
 
         var solve = this.solves[id];
         var emptyCells = board.getEmptyCells();

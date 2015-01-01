@@ -10,7 +10,7 @@
     <div class="title"></div>
     <img class="user-avatar" src="images/hooray.png" />
     <span class="user-name">Hooray Hu</span>
-    <div class="items">
+    <div class="items" onclick="controller && controller.hint()">
       <span class="name">Hint</span>
       <span class="value">20</span>
     </div>
@@ -19,19 +19,60 @@
   <div class="container">
     <div class="board"></div>
     <div class="helper">
+      <div class="time"></div>
+      <div class="buttons">
+        <button onclick="">New Game</button>
+        <button onclick="controller && controller.newRandomGame()">Random!</button>
+        <button onclick="controller && controller.abandonGame()">Abandon</button>
+        <button onclick="controller && controller.hint()">Hint</button>
+      </div>
       <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="numberChooser"></div>
+  <div class="numberPicker">
+    <svg>
+      <g class="all">
+        <path></path>
+        <path></path>
+        <path></path>
+        <path></path>
+        <path></path>
+        <path></path>
+        <path></path>
+        <path></path>
+        <path></path>
+        <circle></circle>
+        <g class="text">
+          <text></text>
+          <text>1</text>
+          <text>2</text>
+          <text>3</text>
+          <text>4</text>
+          <text>5</text>
+          <text>6</text>
+          <text>7</text>
+          <text>8</text>
+          <text>9</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="completeMessage"></div>
+  <div class="abandonMessage"></div>
+  <div class="gamePicker"></div>
   <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
   <script src="js/models.js"></script>
+  <script src="js/game.js"></script>
   <script src="js/services.js"></script>
   <script src="js/renderer.js"></script>
-  <script src="js/game.js"></script>
+  <script src="js/controllers.js"></script>
   <script>
-    var game = new Sodoku.Game(document.querySelector(".board"), new Sodoku.Renderers.jQueryRenderer(), Sodoku.Services);
-    game.init();
-    game.newGame(0);
+    var controller = new Sodoku.Controllers.GameController(
+      new Sodoku.Renderers.jQueryRenderer(".board", ".numberPicker", ".gamePicker", ".completeMessage", ".abandonMessage", ".time"),
+      new Sodoku.Services.UserService(),
+      new Sodoku.Services.GameService());
+    controller.init();
+    controller.newRandomGame();
   </script>
 </body>

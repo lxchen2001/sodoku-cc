@@ -1,9 +1,27 @@
 body{
   background-color: rgb(26, 26, 26);
+  font-family: "Lucida Grande";
+}
+
+button{
+  padding: 8px;
+  background-color: rgb(41, 168, 193);
+  border: 0;
+  cursor: pointer;
+  color: white;
+  margin: 0 8px 8px 0;
+}
+
+button:hover{
+  background-color: white;
+  color: rgb(41, 168, 193);
 }
 
 .navbar .title{
-  color: white;
+  background-image: url('uber-title.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 300px 50px;
 }
 
 .navbar .user-name {
@@ -18,8 +36,9 @@ body{
 .board .cell.invalid{
   background-color: #92262D;
 }
-.board .cell.predefined{
 
+.board .cell.predefined{
+  color: #93D4D0;
 }
 
 .board .cell.hint{
@@ -33,4 +52,17 @@ body{
 .board .cell:hover{
   color: rgb(41, 168, 193);
   background-color: white;
+}
+
+.numberPicker svg circle, .numberPicker svg path{
+  fill: rgb(41, 168, 193);
+  stroke: white;
+}
+
+.numberPicker svg circle:hover, .numberPicker svg path:hover{
+  fill: rgb(26, 26, 26);
+}
+
+.helper .time{
+  color: white;
 }

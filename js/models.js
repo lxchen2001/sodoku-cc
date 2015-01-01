@@ -44,7 +44,7 @@
         }
         row.push(digit);
         invalidRow.push(false);
-        sourceRow.push(digit === 0 ? SourceType.predefined : SourceType.userInput);
+        sourceRow.push(digit === 0 ? SourceType.userInput : SourceType.predefined);
       }
     }
 
@@ -61,6 +61,9 @@
         var map = {};
         for(var j = 0; j < 9; j++){
           var cell = store[i][j];
+          if(cell === 0){
+            continue;
+          }
           if(map[cell] == null){
             map[cell] = j;
           } else {
@@ -76,13 +79,16 @@
         var map = {};
         for(var i = 0; i < 9; i++){
           var cell = store[i][j];
+          if(cell === 0){
+            continue;
+          }
           if(map[cell] == null){
             map[cell] = i;
           } else {
             var io = map[cell];
+            invalid[i][j] = true;
             invalid[io][j] = true;
-            invalid[io][j] = true;
-            valide = false;
+            valid = false;
           }
         }
       }
@@ -93,6 +99,9 @@
           for(var ii=i;ii<i+3;ii++){
             for(var jj = j; jj < j+3; jj++){
               var cell = store[ii][jj];
+              if(cell === 0){
+                continue;
+              }
               if(map[cell] == null){
                 map[cell] = {i: ii, j: jj};
               } else {

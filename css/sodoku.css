@@ -1,3 +1,7 @@
+.navbar .items{
+  cursor: pointer;
+}
+
 .board .region{
   width: calc(33.33%);
   height: calc(33.33%);
@@ -22,11 +26,45 @@
 }
 
 .helper{
-  display:none;
+  padding: 1px;
+}
+
+.numberPicker{
+  display: none;
+  position: absolute;
+  z-index: 1000;
+}
+
+.numberPicker svg circle{
+  stroke-width: 1px;
+  cursor: pointer;
+}
+
+.numberPicker svg path{
+  stroke-width: 1px;
+  cursor: pointer;
+}
+
+.numberPicker svg text{
+  fill: white;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.gamePicker{
+  
 }
 
 @media screen and (min-width: 200px) and (min-height: 200px){
   .board .region .cell span{
+    font-size: 14px;
+  }
+
+  .numberPicker svg text{
+    font-size: 14px;
+  }
+
+  .helper button{
     font-size: 14px;
   }
 }
@@ -35,11 +73,27 @@
   .board .region .cell span{
     font-size: 20px;
   }
+
+  .numberPicker svg text{
+    font-size: 20px;
+  }
+
+  .helper button{
+    font-size: 16px;
+  }
 }
 
 @media screen and (min-width: 400px) and (min-height: 400px){
   .board .region .cell span{
     font-size: 30px;
+  }
+
+  .numberPicker svg text{
+    font-size: 30px;
+  }
+
+  .helper button{
+    font-size: 24px;
   }
 }
 
@@ -47,16 +101,32 @@
   .board .region .cell span{
     font-size: 40px;
   }
+
+  .numberPicker svg text{
+    font-size: 40px;
+  }
+
+  .helper button{
+    font-size: 30px;
+  }
 }
 
 @media screen and (min-width: 800px) and (min-height: 800px){
   .board .region .cell span{
     font-size: 50px;
   }
+
+  .numberPicker svg text{
+    font-size: 50px;
+  }
 }
 
 @media screen and (min-width: 1000px) and (min-height: 1000px){
   .board .region .cell span{
+    font-size: 60px;
+  }
+
+  .numberPicker svg text{
     font-size: 60px;
   }
 }
@@ -68,11 +138,11 @@
   }
 }
 
-@media screen and (max-aspect-ratio: 3/4) {
+@media screen and (max-aspect-ratio: 6/5) {
   .helper{
     display: block;
-    width: 100vw;
-    height: calc(100% - 100vw);
+    width: calc(100vw - 2px);
+    height: calc(100% - 100vw - 50px - 2px);
   }
 }
 
@@ -85,12 +155,11 @@
   }
 }
 
-@media screen and (min-aspect-ratio: 4/3){
-
+@media screen and (min-aspect-ratio: 6/5){
   .helper {
     display: block;
-    width: calc(100vw - 100vh + 50px);
-    height: calc(100vh - 50px);
+    width: calc(100vw - 100vh + 50px - 2px);
+    height: calc(100vh - 50px - 2px);
     float: left;
   }
 }
