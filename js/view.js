@@ -145,6 +145,7 @@
       $abandonMessageElement: $abandonMessageElement,
       $timeElement: $timeElement,
       timeRendering: false,
+      timeClearing: false,
       startTime: null,
 
       initIfNeeded: function jQueryView_initIfNeeded(){
@@ -185,6 +186,11 @@
             $elem.text(hour + ":" + (min < 10 ? '0' : '') + min + ":" + (sec < 10 ? '0' : '') + sec);
             setTimeout(render, 200);
           }
+
+          if(that.timeClearing){
+            $elem.text("0:00:00");
+            that.timeClearing = false;
+          }
         }
 
         render();
@@ -192,6 +198,11 @@
 
       stopRenderingTime: function jQueryView_stopRenderingTime(){
         this.timeRendering = false;
+      },
+
+      clearTime: function jQueryView_clearTime(){
+        this.timeRendering = false;
+        this.timeClearing = true;
       },
 
       renderGamePicker: function jQueryView_renderGamePicker(gameService, onGamePicked){
@@ -235,7 +246,10 @@
         var $elem = this.$boardElement;
         this.initIfNeeded();
 
-        if(game.state === GameState.started){
+        if(game.state === GameState.readyToStart){
+          this.clearTime();
+        }
+        else if(game.state === GameState.started){
           this.renderTime(game);
         } else if(game.state === GameState.completed){
           this.stopRenderingTime(game);

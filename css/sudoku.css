@@ -82,7 +82,7 @@
     font-size: 14px;
   }
 
-  button, .helper select{
+  button, .helper select, .helper .time{
     font-size: 14px;
   }
 }
@@ -96,7 +96,7 @@
     font-size: 20px;
   }
 
-  button, .helper select{
+  button, .helper select, .helper .time{
     font-size: 20px;
   }
 }
@@ -110,7 +110,7 @@
     font-size: 30px;
   }
 
-  button, .helper select{
+  button, .helper select, .helper .time{
     font-size: 30px;
   }
 }
@@ -124,7 +124,7 @@
     font-size: 40px;
   }
 
-  button, .helper select{
+  button, .helper select, .helper .time{
     font-size: 40px;
   }
 }
@@ -138,7 +138,7 @@
     font-size: 50px;
   }
 
-  button, .helper select{
+  button, .helper select, .helper .time{
     font-size: 50px;
   }
 }
@@ -152,7 +152,7 @@
     font-size: 60px;
   }
 
-  button, .helper select{
+  button, .helper select, .helper .time{
     font-size: 60px;
   }
 }
