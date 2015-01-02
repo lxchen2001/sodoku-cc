@@ -1,7 +1,7 @@
 var Sudoku;
 (function(Sudoku){
   "use strict";
-  
+
   Sudoku.View = Sudoku.View || {};
   Sudoku.View.showDialog = Sudoku.View.showDialog || function showDialog($elem, options){
     options = options || {};
@@ -28,6 +28,7 @@ var Sudoku;
     var $abandonMessageElement = $(abandonMessageSelector);
     var $timeElement = $(timeSelector);
 
+    // for workaround of IE not supporting vertically center alignment for svg texts
     function getNumberFontSize(){
       var height = document.offsetHeight;
       if(height >= 1000){
@@ -47,6 +48,7 @@ var Sudoku;
       }
     }
 
+    // show the number picker (an svg) when each cell is clicked
     function showNumberPicker(cellIndex, oldNumber, posX, posY, onNumberSelected){
       var min = Math.min(document.body.scrollWidth, document.body.scrollHeight);
       var r = min / 5;
@@ -110,7 +112,7 @@ var Sudoku;
       $svg.find("g.text").attr("transform", "translate(0," + offset + ")");
     }
 
-    function showDialog($elem, options){
+    function showDialog($elem){
       hideDialog();
 
       var $dialog = $("#dialog");

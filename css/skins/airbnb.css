@@ -33,7 +33,7 @@ button:hover{
   color: white;
 }
 
-.board .cell:hover{
+.board .cell:hover, .board .cell.invalid:hover, .board .cell.predefined:hover, .board .cell.hint:hover{
   background-color: white;
   color: rgb(252, 92, 99);
 }

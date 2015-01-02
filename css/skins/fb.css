@@ -33,17 +33,17 @@ button:hover{
   color: rgb(60, 90, 150);
 }
 
-.board .cell:hover{
+.board .cell:hover, .board .cell.invalid:hover, .board .cell.predefined:hover, .board .cell.hint:hover{
   background-color: rgb(60, 90, 150);
   color: white;
 }
 
 .board .cell.invalid{
-  background-color: #92262D;
+  background-color: #ffaaaa;
 }
 
 .board .cell.predefined{
-  color: rgb(50, 80, 140);
+  color: black;
 }
 
 .board .cell.hint{

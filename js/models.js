@@ -133,6 +133,7 @@ var Sudoku;
       source: source,
       validateAll: Board_validateAll,
 
+      // update cell with value
       updateCell: function Board_updateCell(x, y, value, sourceType){
         if(value == null || typeof value !== "number" || value < 0 || value > 9){
           return false;
@@ -144,10 +145,12 @@ var Sudoku;
         return true;
       },
 
+      // update cell with hint value
       updateCellHint: function Board_updateCellHint(x, y, value){
         return this.updateCell(x, y, value, SourceType.hint);
       },
 
+      // get 9 3*3 regions to render in HTML
       getRegions: function Board_getRegions(){
         var regions = [];
         for(var i = 0; i < 9; i+=3){
@@ -169,6 +172,7 @@ var Sudoku;
         return regions;
       },
 
+      // get empty cells to choose from when we want a hint
       getEmptyCells: function Board_getEmptyCells(){
         var emptyCells = [];
         for(var i = 0; i < 9; i++){
@@ -182,6 +186,7 @@ var Sudoku;
         return emptyCells;
       },
 
+      // check whether the board is complete thus the game is complete
       isComplete: function Board_isComplete(){
         for(var i = 0; i < 9; i++){
           for(var j = 0; j < 9; j++){
@@ -234,6 +239,7 @@ var Sudoku;
         return true;
       },
 
+      // check whether the game is complete
       checkComplete: function Game_checkComplete(){
         if(this.board.isComplete()){
           this.state = GameState.completed;

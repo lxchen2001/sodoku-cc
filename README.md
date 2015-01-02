@@ -1,5 +1,8 @@
 #Problem and Solution
-This is a code challenge project, to build a Sudoku game.
+This is a code challenge project, to build a frontend only Sudoku game. As requested, I have used nothing except jQuery. Hosted at: http://sudokucc.azurewebsites.net
+
+My LinkedIn Profile: http://www.linkedin.com/pub/lei-hooray-hu/23/b15/5a8
+
 
 ###Features
 <ol>
@@ -35,6 +38,8 @@ This is a code challenge project, to build a Sudoku game.
 #####Tests
 * spec/support/jasmine.json: test file list for [jasmine-npm]
 * tests/modelstests.js: unit test cases for models
+
+Note: We could also create unit test cases for view and controllers with mockups for models.
 
 ###Further ideas
 * Major Features:

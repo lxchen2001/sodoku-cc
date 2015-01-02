@@ -29,6 +29,11 @@ button:hover{
   color: white;
 }
 
+.board .cell:hover, .board .cell.invalid:hover, .board .cell.predefined:hover, .board .cell.hint:hover{
+  color: rgb(41, 168, 193);
+  background-color: white;
+}
+
 .board .cell.invalid{
   background-color: #92262D;
 }
@@ -43,11 +48,6 @@ button:hover{
 
 .board .cell.userInput{
   color: blue;
-}
-
-.board .cell:hover{
-  color: rgb(41, 168, 193);
-  background-color: white;
 }
 
 .number-picker svg circle, .number-picker svg path{
