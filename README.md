@@ -6,7 +6,7 @@ This is a code challenge project, to build a Sudoku game.
   <li>User can start playing the game right away
   <li>User can choose from multiple predefined games
   <li>User gets realtime validation after each actions
-  <li>User can get a hint
+  <li>User can get hints
   <li>User can switch among three skins, based on theme colors of three popular web sites
   <li>User can see equally good UI no matter whether his device is in portrait or landscape mode
   <li>User can picking number from a roulette wheel, with clicking center meaning cancel the picking
@@ -14,10 +14,12 @@ This is a code challenge project, to build a Sudoku game.
 
 ###Dependencies
 * [jQuery] - to operate the DOM. This is replaceable, since all of the usage is encapsulated in jQueryView.
+* [jasmine] - unit tests
+* [jasmine-npm] - command line jasmine test runner
 
 ###Project Structure
 #####HTML
-* index.html: The only HTML that shows
+* index.html: the only HTML file
 
 #####CSS
 * css/site.css: The site level stylesheet, could be used for other games / pages
@@ -25,17 +27,14 @@ This is a code challenge project, to build a Sudoku game.
 * css/skins: The stylesheet and resources for different skins
 
 #####JavaScript
-* js/models.js: Models mock up to see the interface designed between frontend and backend.
-* js/controllers.js: Service mock up to see the interface designed between frontend and backend.
-* js/view.js: Service mock up to see the interface designed between frontend and backend.
-* js/services.js: Service mock up to see the interface designed between frontend and backend.
+* js/models.js: Game and Board classes which would be used by controllers and views
+* js/controllers.js: GameController, the controller which will refer models and views
+* js/view.js: jQueryView, an replaceable view for
+* js/services.js: Service mock up to show the interface designed between frontend and backend.
 
 #####Tests
-* tests/modelsmockup.js: Mock up for models
-* tests/modelstests.js: Test cases for models
-* tests/viewmockup.js: Mock up for view
-* tests/viewtests.js: Test cases for view
-* tests/controllertests.js: test cases for controllers, with mockup for models and view
+* spec/support/jasmine.json: test file list for [jasmine-npm]
+* tests/modelstests.js: unit test cases for models
 
 ###Further ideas
 * Major Features:
@@ -55,3 +54,5 @@ This is a code challenge project, to build a Sudoku game.
 * The predefined questions come from "Hardest 20": http://attractivechaos.github.io/plb/kudoku.html
 
 [jQuery]:http://jquery.com
+[jasmine]:https://github.com/jasmine/jasmine
+[jasmine-npm]:https://github.com/jasmine/jasmine-npm

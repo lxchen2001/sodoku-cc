@@ -3,12 +3,20 @@ body{
 }
 .navbar{
   height: 50px;
+  color: white;
 }
 
 .navbar .title{
   width: 300px;
   height: 50px;
   float: left;
+}
+
+button{
+  padding: 8px;
+  margin: 0 8px 8px 0;
+  border: 0;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px){
@@ -22,7 +30,6 @@ body{
   font-size: 20px;
   height:50px;
   line-height: 50px;
-  color:white;
 }
 
 .navbar .user-avatar{

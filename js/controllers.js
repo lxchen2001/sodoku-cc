@@ -1,7 +1,9 @@
-(function(){
-  window.Sudoku = window.Sudoku || {};
-  window.Sudoku.Controllers = window.Sudoku.Controllers || {};
-  window.Sudoku.Controllers.GameController = window.Sudoku.Controllers.GameController || function GameController(view, userService, gameService){
+var Sudoku;
+(function(Sudoku){
+  "use strict";
+  
+  Sudoku.Controllers = Sudoku.Controllers || {};
+  Sudoku.Controllers.GameController = Sudoku.Controllers.GameController || function GameController(view, userService, gameService){
 
     return {
       view: view,
@@ -36,7 +38,7 @@
       },
 
       hint: function GameController_hint(){
-        if(this.game && this.game.hint(this.gameService)){
+        if(this.game && this.gameService && this.gameService.hint(this.game)){
           this.view.renderGame(this.game, true);
         }
       },
@@ -72,4 +74,8 @@
       },
     }
   };
-})();
+
+  if(typeof module !== "undefined"){
+    module.exports = Sudoku.Controllers;
+  }
+})(Sudoku || (Sudoku = {}));

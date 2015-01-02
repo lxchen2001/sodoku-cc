@@ -1,25 +1,25 @@
-(function(){
+var Sudoku;
+(function(Sudoku){
   "use strict";
 
-  window.Sudoku = window.Sudoku || {};
-  window.Sudoku.Models = window.Sudoku.Models || {};
-  window.Sudoku.Models.SourceType = window.Sudoku.Models.SourceType || {
+  Sudoku.Models = Sudoku.Models || {};
+  Sudoku.Models.SourceType = Sudoku.Models.SourceType || {
     predefined: "P",
     userInput: "U",
     hint: "H"
   };
 
-  window.Sudoku.Models.GameState = window.Sudoku.Models.GameState || {
+  Sudoku.Models.GameState = Sudoku.Models.GameState || {
     readyToStart: "R",
     started: "S",
     completed: "C",
     abandoned: "A",
   };
 
-  var SourceType = window.Sudoku.Models.SourceType;
-  var GameState = window.Sudoku.Models.GameState;
+  var SourceType = Sudoku.Models.SourceType;
+  var GameState = Sudoku.Models.GameState;
 
-  window.Sudoku.Models.Board = window.Sudoku.Models.Board || function Board(stringRep){
+  Sudoku.Models.Board = Sudoku.Models.Board || function Board(stringRep){
     var s = stringRep;
     if(s == null || typeof s !== "string" || s.length != 81){
       return null;
@@ -135,12 +135,17 @@
 
       updateCell: function Board_updateCell(x, y, value, sourceType){
         if(value == null || typeof value !== "number" || value < 0 || value > 9){
-          return;
+          return false;
         }
 
         this.store[x][y] = value;
         this.source[x][y] = sourceType || SourceType.userInput;
         this.validateAll();
+        return true;
+      },
+
+      updateCellHint: function Board_updateCellHint(x, y, value){
+        return this.updateCell(x, y, value, SourceType.hint);
       },
 
       getRegions: function Board_getRegions(){
@@ -192,13 +197,27 @@
     };
   };
 
-  window.Sudoku.Models.Game = window.Sudoku.Models.Game || function Game(id, board){
+  Sudoku.Models.Game = Sudoku.Models.Game || function Game(id, board){
+    if(board == null){
+      return null;
+    }
+
+    var startTime = null;
+    var endTime = null;
+    var state = GameState.readyToStart;
+
+    if(board.isComplete()){
+      startTime = new Date();
+      endTime = startTime;
+      state = GameState.completed;
+    }
+
     return {
       id: id,
       board: board,
-      state: GameState.readyToStart,
-      startTime: null,
-      endTime: null,
+      state: state,
+      startTime: startTime,
+      endTime: endTime,
 
       // returns whether starting succeeded
       start: function Game_start(){
@@ -219,7 +238,10 @@
         if(this.board.isComplete()){
           this.state = GameState.completed;
           this.endTime = new Date();
+          return true;
         }
+
+        return false;
       },
 
       // returns whether abandoning succeeded
@@ -248,18 +270,10 @@
         this.checkComplete();
         return true;
       },
-
-      // returns whether re-render is needed
-      hint: function Game_hint(service){
-        if(!this.start()){
-          return;
-        }
-
-        service.hint(this);
-        this.checkComplete();
-        return true;
-      }
     };
   };
-  
-})();
+
+  if(typeof module !== "undefined"){
+    module.exports = Sudoku.Models;
+  }
+})(Sudoku || (Sudoku = {}));

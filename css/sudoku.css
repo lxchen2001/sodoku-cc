@@ -26,7 +26,7 @@
 }
 
 .helper select{
-  margin: 8px 8px 0px 1px;
+  margin: 0 8px 8px 0;
 }
 
 .number-picker{
@@ -59,18 +59,21 @@
   display:none;
   width: 60%;
   height: 60%;
+  padding: 10px;
 }
 
 .complete-message{
   display:none;
   width: 60%;
   height: 60%;
+  padding: 10px;
 }
 
 .abandon-message{
   display:none;
   width: 60%;
   height: 60%;
+  padding: 10px;
 }
 
 @media screen and (min-width: 200px) and (min-height: 200px){
@@ -78,7 +81,7 @@
     font-size: 14px;
   }
 
-  .numberPicker svg text{
+  .number-picker svg text{
     font-size: 14px;
   }
 
@@ -92,7 +95,7 @@
     font-size: 20px;
   }
 
-  .numberPicker svg text{
+  .number-picker svg text{
     font-size: 20px;
   }
 
@@ -106,7 +109,7 @@
     font-size: 30px;
   }
 
-  .numberPicker svg text{
+  .number-picker svg text{
     font-size: 30px;
   }
 
@@ -120,7 +123,7 @@
     font-size: 40px;
   }
 
-  .numberPicker svg text{
+  .number-picker svg text{
     font-size: 40px;
   }
 
@@ -134,7 +137,7 @@
     font-size: 50px;
   }
 
-  .numberPicker svg text{
+  .number-picker svg text{
     font-size: 50px;
   }
 
@@ -148,7 +151,7 @@
     font-size: 60px;
   }
 
-  .numberPicker svg text{
+  .number-picker svg text{
     font-size: 60px;
   }
 

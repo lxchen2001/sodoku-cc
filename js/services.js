@@ -1,9 +1,9 @@
-(function(){
+var Sudoku;
+(function(Sudoku){
   "use strict";
 
-  window.Sudoku = window.Sudoku || {};
-  window.Sudoku.Services = window.Sudoku.Services || {};
-  window.Sudoku.Services.UserService = window.Sudoku.Services.UserService || function UserService(){
+  Sudoku.Services = Sudoku.Services || {};
+  Sudoku.Services.UserService = Sudoku.Services.UserService || function UserService(){
     return {
       getUserInfo: function UserService_getUserInfo(){
         return {
@@ -14,7 +14,7 @@
     };
   };
 
-  window.Sudoku.Services.GameService = window.Sudoku.Services.GameService || function GameService(){
+  Sudoku.Services.GameService = Sudoku.Services.GameService || function GameService(){
     var games = [
       "98765432124617398535192874612853769463489215779546183251928647347231956886374521.",
       "..............3.85..1.2.......5.7.....4...1...9.......5......73..2.1........4...9",
@@ -98,28 +98,32 @@
       hint: function GameService_hint(game){
         if(game == null){
           // log error and save to server
-          return;
+          return false;
         }
 
         var id = game.id;
         if(id == null || typeof id !== "number" || id < 0 || id > 19){
           // log error and save to server
-          return;
+          return false;
         }
         var board = game.board;
 
         var solve = this.solves[id];
         var emptyCells = board.getEmptyCells();
         if(emptyCells.length === 0){
-          return {type: "NO_EMPTY_CELLS", message: "no cell available for hint"};
+          return false;
         }
 
         var rd = Math.floor(Math.random() * emptyCells.length);
         var emptyCell = emptyCells[rd];
         var x = emptyCell.x;
         var y = emptyCell.y;
-        board.updateCell(x, y, parseInt(solve[x * 9 + y]), Sudoku.Models.SourceType.hint);
+        return board.updateCellHint(x, y, parseInt(solve[x * 9 + y]));
       }
     };
   };
-})();
+
+  if(typeof module !== "undefined"){
+    module.exports = Sudoku.Services;
+  }
+})(Sudoku || (Sudoku = {}));

@@ -1,9 +1,20 @@
 body{
+  background-color: rgb(245, 245, 245);
+}
+
+button{
+  background-color: rgb(252, 92, 99);
+  color: white;
+}
+
+button:hover{
   background-color: white;
+  color: rgb(252, 92, 99);
 }
 
 .navbar {
-  background-color: rgb(252, 92, 99);
+  background-color: white;
+  color: rgb(252, 92, 99);
 }
 
 .navbar .title{
@@ -13,12 +24,34 @@ body{
   background-size: 300px 50px;
 }
 
-.board .cell{
-  background-color: rgb(252, 92, 99);
+.navbar .user-avatar{
+  border: solid 2px rgb(252, 92, 99);
 }
 
-.board .cell span{
+.board .cell{
+  background-color: rgb(252, 92, 99);
   color: white;
+}
+
+.board .cell:hover{
+  background-color: white;
+  color: rgb(252, 92, 99);
+}
+
+.board .cell.invalid{
+  background-color: #92262D;
+}
+
+.board .cell.predefined{
+  color: #93D4D0;
+}
+
+.board .cell.hint{
+  color: gold;
+}
+
+.board .cell.userInput{
+  color: blue;
 }
 
 .number-picker svg circle, .number-picker svg path{
@@ -32,4 +65,16 @@ body{
 
 .number-picker svg text{
   fill: rgb(252, 92, 99) !important;
+}
+
+.game-picker{
+  background-color: white;
+}
+
+.complete-message{
+  background-color: white;
+}
+
+.abandon-message{
+  background-color: white;
 }

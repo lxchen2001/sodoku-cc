@@ -1,26 +1,26 @@
-(function(){
+var Sudoku;
+(function(Sudoku){
   "use strict";
-
-  window.Sudoku = window.Sudoku || {};
-  window.Sudoku.View = window.Sudoku.View || {};
-  window.Sudoku.View.showDialog = window.Sudoku.View.showDialog || function showDialog($elem, options){
+  
+  Sudoku.View = Sudoku.View || {};
+  Sudoku.View.showDialog = Sudoku.View.showDialog || function showDialog($elem, options){
     options = options || {};
     var $dialog = $("#dialog");
     $dialog.css("top", document.body.scrollTop + "px")
       .css("left", document.body.scrollLeft + "px")
-      .css("width", window.innerWidth + "px")
-      .css("height", window.innerHeight + "px");
+      .css("width", innerWidth + "px")
+      .css("height", innerHeight + "px");
     $dialog.show();
   };
 
-  window.Sudoku.View.hideDialog = window.Sudoku.View.hideDialog || function hideDialog($elem){
+  Sudoku.View.hideDialog = Sudoku.View.hideDialog || function hideDialog($elem){
     $elem[0].hide();
   };
 
-  var SourceType = window.Sudoku.Models.SourceType;
-  var GameState = window.Sudoku.Models.GameState;
+  var SourceType = Sudoku.Models.SourceType;
+  var GameState = Sudoku.Models.GameState;
 
-  window.Sudoku.View.jQueryView = window.Sudoku.View.jQueryView || function jQueryView(boardSelector, numberPickerSelector, gamePickerSelector, completeMessageSelector, abandonMessageSelector, timeSelector){
+  Sudoku.View.jQueryView = Sudoku.View.jQueryView || function jQueryView(boardSelector, numberPickerSelector, gamePickerSelector, completeMessageSelector, abandonMessageSelector, timeSelector){
     var $boardElement = $(boardSelector);
     var $numberPickerElement = $(numberPickerSelector);
     var $gamePickerElement = $(gamePickerSelector);
@@ -93,7 +93,7 @@
         $path.attr("name", i+1);
         $path.off();
         $path.on("click", function(e){
-          e = e || window.event;
+          e = e || event;
           e = jQuery.event.fix(e);
           var index = parseInt(e.target.attributes["name"].value);
           onNumberSelected(Math.floor(cellIndex / 9), cellIndex % 9, index);
@@ -220,7 +220,7 @@
         var $buttons = $elem.find("button");
         $buttons.off();
         $buttons.on("click", function(e){
-          e = e || window.event;
+          e = e || event;
           e = jQuery.event.fix(e);
           var id = parseInt(e.target.attributes["name"].value);
           onGamePicked(id);
@@ -262,7 +262,7 @@
         var that = this;
 
         function onCellClicked(e){
-          e = e || window.event;
+          e = e || event;
           e = jQuery.event.fix(e);
           var target = e.target;
           if(target.tagName === "SPAN"){
@@ -331,4 +331,8 @@
 
     };
   };
-})();
+
+  if(typeof module !== "undefined"){
+    module.exports = Sudoku.View;
+  }
+})(Sudoku || (Sudoku = {}));

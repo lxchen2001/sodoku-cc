@@ -4,12 +4,8 @@ body{
 }
 
 button{
-  padding: 8px;
   background-color: rgb(41, 168, 193);
-  border: 0;
-  cursor: pointer;
   color: white;
-  margin: 0 8px 8px 0;
 }
 
 button:hover{
